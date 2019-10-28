@@ -125,3 +125,13 @@ You'll also have to extract the year from the `release_date` property. To do thi
 Here's the final step for today!
 
 Because the poster requires you to create the URL first, move those elements to their own component. This could be reusable later. **Don't forget to** pass the film as a prop to the new `FilmPoster` component.
+
+### Ready to submit your work?
+
+Awesome, and congratulations on the finish! Now first, make sure all your work is committed and pushed. Run the following commands in a terminal window in the project folder:
+
+- `git add .`
+- `git commit`
+- `git push`
+
+Next, go to `github.com` and make a pull request (a PR) to our original repo. How did you feel about the homework? Was it the right amount of challenge? Or was it too easy or too complicated? Let us know in the PR comments!
