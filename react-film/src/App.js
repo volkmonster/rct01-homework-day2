@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import TMDB from './TMDB';
+import FilmListing from './components/FilmListing';
+import FilmDetails from './components/FilmDetails';
 import './App.css';
+
+const { films } = TMDB;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
+      <div className="film-library">
+        <FilmListing films={films} />
+        <FilmDetails films={films} />
       </div>
     );
   }
