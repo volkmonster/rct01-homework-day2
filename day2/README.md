@@ -29,9 +29,9 @@ In your browser, the icon should appear in the bottom-right corner of each film 
 ```
 
 
-#### Step 2: Define a `handleClick()` function in `Fave`.
+#### Step 2: Define a `handleClick` function in `Fave`.
 
-Inside the `Fave` component, define a function called `handleClick()`. The function should accept an event (`e`) as an argument. Simply log out a message like `"handling Fave click!"` for now.
+Inside the `Fave` component, define a function called `handleClick`. The function should accept an event (`e`) as an argument. Simply log out a message like `"handling Fave click!"` for now.
 
 Because you aren't using this anywhere yet, nothing should change.
 
@@ -39,7 +39,7 @@ Because you aren't using this anywhere yet, nothing should change.
 
 Now that you have a function that handles when a user clicks a movie, connect it to the UI. In the `div` of `Fave`'s `render()` function, add a parameter of `onClick={this.handleClick}`.
 
-In your browser's JavaScript console, you should see the message `handleClick` printed out when the `div` is clicked.
+In your browser's JavaScript console, you should see the message `handling Fave click!` printed out when the `div` is clicked.
 
 That's all! Your click is not yet adding favorites, but it's working. Later, you'll modify your app so that when the `Fave` icon is clicked, it adds or removes the selected movie from the user's favorites array.
 
@@ -49,11 +49,11 @@ That's all! Your click is not yet adding favorites, but it's working. Later, you
 Eventually, you'll want an "ALL" heading and a "FAVES" heading that are clickable links. When the user clicks "ALL," the left sidebar will show all movies; when the user clicks "FAVES," the left sidebar will show only their favorite movies. You'll make the basis of that next.
 
 
-#### Step 1: Define a `handleFilterClick()` function in `FilmListing`.
+#### Step 1: Define a `handleFilterClick` function in `FilmListing`.
 
 First, set up the function that will determine which movies are shown in the list. You'll need to be able to tell if you are showing the user all of the movies or if you are filtering down to only display some of them.
 
-In `FilmListing`, create a `handleFilterClick()` function that takes a `filter` string as an argument. For now, just print a message that says `Setting filter to` and the `filter` argument.
+In `FilmListing`, create a `handleFilterClick` function that takes a `filter` string as an argument. For now, just print a message that says `Setting filter to` and the `filter` argument.
 
 This new function isn't connected to a button in the UI yet, so nothing should change.
 
@@ -89,7 +89,7 @@ If you check your browser, these subheadings should appear in the left column.
 
 Now you have an "ALL" section and a "FAVES" section, you can hook that filtering function you just created up to them.
 
-Add an `onClick` inside `FilmListing` so that, when "FAVES" is clicked, it calls the `handleFilterClick()` method you created with the `'faves'` parameter.
+Add an `onClick` inside `FilmListing` so that, when "FAVES" is clicked, it calls the `handleFilterClick` method you created with the `'faves'` parameter.
 
 Try clicking "FAVES." Does it print to the console?
 
@@ -105,25 +105,25 @@ Try clicking "FAVES." Does it print to the console?
 
 Now that "FAVES" is clickable, the next step is to make "ALL" clickable, as well.
 
-Add an `onClick` inside `FilmListing` so that, when "ALL" is clicked, it calls the `handleFilterClick()` method with an argument of `'all'`.
+Add an `onClick` inside `FilmListing` so that, when "ALL" is clicked, it calls the `handleFilterClick` method with an argument of `'all'`.
 
 Now, you should see a message in the console when you click either option. Later, instead of viewing a message, clicking either option will display the correct list of movies to the user — you've assured that these options are clickable, which is an important first step.
 
 
 ### Tasks, Part 3: Handling Film Details
 
-#### Step 1: Define a `handleDetailsClick()` function inside `FilmRow`.
+#### Step 1: Define a `handleDetailsClick` function inside `FilmRow`.
 
 You aren't going to create the large, detailed view of the film that will be displayed on the right column just yet, but you'll start setting up for it.
 
-Inside `FilmRow`, define a function called `handleDetailsClick()`. The function should accept a film as an argument. Print out `Fetching details for` and the film title to the console.
+Inside `FilmRow`, define a function called `handleDetailsClick`. The function should accept a film as an argument. Print out `Fetching details for` and the film title to the console.
 
 Because this function is not yet connected to the UI, nothing will change.
 
 
 #### Step 2: Add a click handler to call the new function with a `film` object.
 
-Now, connect `handleDetailsClick()`. Add an `onClick` to `FilmRow` so that your message gets printed whenever you click on a film row — don't forget to pass the argument!
+Now, connect `handleDetailsClick`. Add an `onClick` to `FilmRow` so that your message gets printed whenever you click on a film row — don't forget to pass the argument!
 
 You should be able to check this in your console by clicking any film row.
 
@@ -134,7 +134,7 @@ You should be able to check this in your console by clicking any film row.
 
 Wait! Notice that you're now seeing two messages every time you click on the `Fave` icon/button. This is tricky, it's because the event is propagating upward to the `FilmRow`. To make it so that only one message appears, you'll need to stop the event propagation.
 
-To do this, add the line `e.stopPropagation()` inside the `Fave` component's `handleClick()` function.
+To do this, add the line `e.stopPropagation()` inside the `Fave` component's `handleClick` function.
 
 Try clicking the `Fave` icon/button — there's only one message now.
 
@@ -150,31 +150,18 @@ The first state you'll add will address whether or not a currently selected film
 Add an initial `state` object to the `Fave` component.
 
 
-#### Step 2: Bind your event handler to this component.
-
-`this` binding can be a very finicky topic in JavaScript, but there are tricks to using it. To make sure your event handler works properly, you'll need to bind `this` to it. Add the line shown here to your `Fave` component's constructor.
-
-This will be required for each event handler defined on any of your class-based components. Add it for all of the `onClick()` methods in your classes in that class' constructor (make sure to change `handleClick()` to the name of the function in that class).
-
-```js
-// This binding is necessary to make this work in the callback.
-this.handleClick = this.handleClick.bind(this);
-```
-
-Alternatively you can use the new fat arrow syntax `=>` when creating the function to bind the context of `this`;
-
-#### Step 3: Set the initial state.
+#### Step 2: Set the initial state.
 
 By default, a film is not a user's favorite.
 
 Back to the `Fave` component. Update your initial `state` object with a key of `isFave` and a value of `false`. This will set up the component's initial state.
 
 
-#### Step 4: Set the state in your event handler.
+#### Step 3: Set the state in your event handler.
 
 When the user clicks the `Fave` icon/button to add or remove a film from their favorites list, the app should change the film's `isFave` state to reflect that.
 
-Inside of the `handleClick()` method on the `Fave` component, use `this.setState()` to toggle the value of `isFave`. "Toggle" means you always want to set the new value to the opposite of the current value.
+Inside of the `handleClick` method on the `Fave` component, use `this.setState()` to toggle the value of `isFave`. "Toggle" means you always want to set the new value to the opposite of the current value.
 
 Remember to use an arrow function to create your event.
 
@@ -184,7 +171,7 @@ Remember to use an arrow function to create your event.
 </details>
 
 
-#### Step 5: Set the `className` on `div` based on the `IsFave` state.
+#### Step 4: Set the `className` on `div` based on the `IsFave` state.
 
 You now want the `className` attribute on the `div` to dynamically update when the state is changed. Currently, the `className` on the `div` is `add_to_queue`. However, if the film has already been favorited, then the film is already in the queue. Therefore, when `isFave: true`, the `className` should instead be `remove_from_queue`.
 
@@ -224,9 +211,9 @@ In the `FilmListing` component, set `state` to an object with a key of `filter` 
 
 #### Step 2: Set the state in your event handler.
 
-The `handleFilterClick()` method is the one that's called when a user clicks "ALL" or "FAVES," so it's where you'll change the filter.
+The `handleFilterClick` method is the one that's called when a user clicks "ALL" or "FAVES," so it's where you'll change the filter.
 
-Inside of using the `handleFilterClick()` method on the `FilmListing` component, use `this.setState` to set the value of `filter` to the value passed to the event handler.
+Inside of using the `handleFilterClick` method on the `FilmListing` component, use `this.setState` to set the value of `filter` to the value passed to the event handler.
 
 
 #### Step 3: Set the `className` on `div` based on `filter`'s state.
