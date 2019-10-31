@@ -10,6 +10,10 @@ In the future, however, you'll be able to add films to your list of favorites, f
 
 ![](images/film-2.png)
 
+### Tasks, Part 0: Refactoring
+
+The codebase is currently written using class-based components. Re-write the `App`, `FilmListing`, `FilmDetails`, `FilmRow`, and `FilmPoster` components as functional components.
+
 
 ### Tasks, Part 1: Adding Favorites
 
